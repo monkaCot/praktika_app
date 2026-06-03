@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:FieldService.ViewModels"
+             x:Class="FieldService.AddRequestPage"
+             x:DataType="vm:AddRequestViewModel"
+             Title="Новая заявка">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Имя клиента" />
+            <Entry Text="{Binding ClientName}" Placeholder="Иван Иванов" />
+
+            <Label Text="Телефон" />
+            <Entry Text="{Binding Phone}" Placeholder="+7..." Keyboard="Telephone" />
+
+            <Label Text="Адрес" />
+            <Entry Text="{Binding Address}" Placeholder="ул. Ленина, 1" />
+
+            <Label Text="Описание проблемы" />
+            <Editor Text="{Binding Problem}" Placeholder="Что случилось?" HeightRequest="100" />
+
+            <Button Text="Сохранить"
+                    Command="{Binding SaveCommand}"
+                    Margin="0,10,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
