@@ -68,6 +68,7 @@
 		</PackageReference>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+		<PackageReference Include="QuestPDF" Version="2026.5.0" />
 	</ItemGroup>
 
 	<ItemGroup>
