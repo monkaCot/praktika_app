@@ -16,7 +16,6 @@ public class AppDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
         string dbPath = Path.Combine(FileSystem.AppDataDirectory, "fieldservice.db");
-
         options.UseSqlite($"Data Source={dbPath}");
     }
 }

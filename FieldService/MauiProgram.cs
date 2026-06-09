@@ -8,7 +8,7 @@ namespace FieldService
 {
     public static class MauiProgram
     {
-        public static async Task<MauiApp> CreateMauiApp()
+        public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
             builder
@@ -20,7 +20,7 @@ namespace FieldService
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             builder.Services.AddDbContext<AppDbContext>();
@@ -29,15 +29,14 @@ namespace FieldService
             builder.Services.AddTransient<AddRequestViewModel>();
             builder.Services.AddTransient<AddRequestPage>();
             builder.Services.AddSingleton<IDocumentService, DocumentService>();
+
             var app = builder.Build();
 
             using (var scope = app.Services.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                db.Database.EnsureCreated();
-
                 var docService = scope.ServiceProvider.GetRequiredService<IDocumentService>();
-                await docService.InitializeTemplatesAsync();
+                docService.InitializeTemplatesAsync().GetAwaiter().GetResult();
             }
 
             return app;
