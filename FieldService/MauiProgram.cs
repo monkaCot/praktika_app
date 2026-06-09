@@ -31,14 +31,14 @@ namespace FieldService
             builder.Services.AddSingleton<IDocumentService, DocumentService>();
 
             var app = builder.Build();
-
             using (var scope = app.Services.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                db.Database.EnsureCreated();
+
                 var docService = scope.ServiceProvider.GetRequiredService<IDocumentService>();
                 docService.InitializeTemplatesAsync().GetAwaiter().GetResult();
             }
-
             return app;
         }
     }
