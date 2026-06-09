@@ -2,12 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using FieldService.Data;
 using FieldService.ViewModels;
+using FieldService.Services;
 
 namespace FieldService
 {
     public static class MauiProgram
     {
-        public static MauiApp CreateMauiApp()
+        public static async Task<MauiApp> CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
             builder
@@ -27,12 +28,16 @@ namespace FieldService
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<AddRequestViewModel>();
             builder.Services.AddTransient<AddRequestPage>();
+            builder.Services.AddSingleton<IDocumentService, DocumentService>();
             var app = builder.Build();
 
             using (var scope = app.Services.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
                 db.Database.EnsureCreated();
+
+                var docService = scope.ServiceProvider.GetRequiredService<IDocumentService>();
+                await docService.InitializeTemplatesAsync();
             }
 
             return app;
