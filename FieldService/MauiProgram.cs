@@ -30,6 +30,8 @@ namespace FieldService
             builder.Services.AddTransient<AddRequestPage>();
             builder.Services.AddSingleton<IDocumentService, DocumentService>();
             builder.Services.AddSingleton<AuthService>();
+            builder.Services.AddTransient<LoginViewModel>();
+            builder.Services.AddTransient<LoginPage>();
 
             var app = builder.Build();
             using (var scope = app.Services.CreateScope())

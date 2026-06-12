@@ -4,12 +4,18 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:FieldService"
-    Shell.FlyoutBehavior="Flyout"
+    Shell.FlyoutBehavior="Disabled"
     Title="FieldService">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Route="login"
+        ContentTemplate="{DataTemplate local:LoginPage}"
+        Shell.NavBarIsVisible="False" />
+
+    <TabBar Route="main">
+        <ShellContent
+            Title="Заявки"
+            ContentTemplate="{DataTemplate local:MainPage}" />
+    </TabBar>
 
 </Shell>
