@@ -42,6 +42,8 @@ namespace FieldService.ViewModels
 
             // Вход успешен переходим в основное приложение
             await Shell.Current.GoToAsync("//main");
+            if (Shell.Current is AppShell shell)
+                shell.ApplyRole(_auth.CurrentUser.Role);
         }
 
         [RelayCommand]

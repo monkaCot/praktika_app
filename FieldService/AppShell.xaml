@@ -13,9 +13,15 @@
         Shell.NavBarIsVisible="False" />
 
     <TabBar Route="main">
-        <ShellContent
-            Title="Заявки"
-            ContentTemplate="{DataTemplate local:MainPage}" />
+        <ShellContent x:Name="TabRequests"
+                      Title="Заявки"
+                      ContentTemplate="{DataTemplate local:MainPage}" />
+        <ShellContent x:Name="TabUsers"
+                      Title="Пользователи"
+                      ContentTemplate="{DataTemplate local:UsersPage}" />
+        <ShellContent x:Name="TabProfile"
+                      Title="Профиль"
+                      ContentTemplate="{DataTemplate local:ProfilePage}" />
     </TabBar>
 
 </Shell>
