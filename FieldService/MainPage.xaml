@@ -8,8 +8,7 @@
              Title="Заявки">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="+"
-                     Command="{Binding GoToAddCommand}" />
+        <ToolbarItem x:Name="AddButton" Text="+" Command="{Binding GoToAddCommand}" />
     </ContentPage.ToolbarItems>
 
     <CollectionView ItemsSource="{Binding Requests}">
