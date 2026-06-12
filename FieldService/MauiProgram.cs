@@ -32,6 +32,8 @@ namespace FieldService
             builder.Services.AddSingleton<AuthService>();
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<RegisterViewModel>();
+            builder.Services.AddTransient<RegisterPage>();
 
             var app = builder.Build();
             using (var scope = app.Services.CreateScope())

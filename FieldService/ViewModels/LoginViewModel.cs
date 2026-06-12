@@ -43,5 +43,11 @@ namespace FieldService.ViewModels
             // Вход успешен переходим в основное приложение
             await Shell.Current.GoToAsync("//main");
         }
+
+        [RelayCommand]
+        private async Task GoToRegisterAsync()
+        {
+            await Shell.Current.GoToAsync(nameof(RegisterPage));
+        }
     }
 }

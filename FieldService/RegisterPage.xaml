@@ -2,28 +2,24 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:FieldService.ViewModels"
-             x:Class="FieldService.LoginPage"
-             x:DataType="vm:LoginViewModel"
-             Title="Вход">
+             x:Class="FieldService.RegisterPage"
+             x:DataType="vm:RegisterViewModel"
+             Title="Регистрация">
 
     <ScrollView>
         <VerticalStackLayout Padding="30" Spacing="18" VerticalOptions="Center">
 
-            <Label Text="Вход в систему"
-                   FontSize="28" FontAttributes="Bold"
+            <Label Text="Регистрация клиента"
+                   FontSize="26" FontAttributes="Bold"
                    HorizontalOptions="Center" />
 
+            <Entry Text="{Binding FullName}" Placeholder="Ваше имя" />
             <Entry Text="{Binding Username}" Placeholder="Логин" />
             <Entry Text="{Binding Password}" Placeholder="Пароль" IsPassword="True" />
 
-            <Label Text="{Binding ErrorMessage}" TextColor="Red" />
+            <Label Text="{Binding Message}" TextColor="Red" />
 
-            <Button Text="Войти" Command="{Binding LoginCommand}" />
-
-            <Button Text="Регистрация"
-                    Command="{Binding GoToRegisterCommand}"
-                    BackgroundColor="Transparent"
-                    TextColor="{AppThemeBinding Light=Blue, Dark=LightBlue}" />
+            <Button Text="Зарегистрироваться" Command="{Binding RegisterCommand}" />
 
         </VerticalStackLayout>
     </ScrollView>
