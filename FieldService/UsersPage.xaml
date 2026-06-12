@@ -7,6 +7,10 @@
              x:DataType="vm:UsersViewModel"
              Title="Пользователи">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Command="{Binding GoToAddUserCommand}" />
+    </ContentPage.ToolbarItems>
+
     <CollectionView ItemsSource="{Binding Users}">
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="models:User">

@@ -43,6 +43,26 @@ namespace FieldService.Services
             return true;
         }
 
+        // Создание пользователя админом с выбором роли.
+        public async Task<bool> CreateUserAsync(string username, string password, string fullName, UserRole role)
+        {
+            using var scope = _services.CreateScope();
+            var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+            if (await db.Users.AnyAsync(u => u.Username == username))
+                return false;
+
+            db.Users.Add(new User
+            {
+                Username = username,
+                Password = password,
+                FullName = fullName,
+                Role = role
+            });
+            await db.SaveChangesAsync();
+            return true;
+        }
+
         // Вход
         public async Task<bool> LoginAsync(string username, string password)
         {

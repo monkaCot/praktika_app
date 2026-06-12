@@ -26,4 +26,10 @@ public partial class UsersViewModel : ObservableObject
         foreach (var u in items)
             Users.Add(u);
     }
+
+    [RelayCommand]
+    private async Task GoToAddUserAsync()
+    {
+        await Shell.Current.GoToAsync(nameof(AddUserPage));
+    }
 }

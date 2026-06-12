@@ -38,6 +38,8 @@ namespace FieldService
             builder.Services.AddTransient<ProfilePage>();
             builder.Services.AddTransient<UsersViewModel>();
             builder.Services.AddTransient<UsersPage>();
+            builder.Services.AddTransient<AddUserViewModel>();
+            builder.Services.AddTransient<AddUserPage>();
 
             var app = builder.Build();
             using (var scope = app.Services.CreateScope())
