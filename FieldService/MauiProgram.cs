@@ -29,6 +29,7 @@ namespace FieldService
             builder.Services.AddTransient<AddRequestViewModel>();
             builder.Services.AddTransient<AddRequestPage>();
             builder.Services.AddSingleton<IDocumentService, DocumentService>();
+            builder.Services.AddSingleton<AuthService>();
 
             var app = builder.Build();
             using (var scope = app.Services.CreateScope())
@@ -38,6 +39,9 @@ namespace FieldService
 
                 var docService = scope.ServiceProvider.GetRequiredService<IDocumentService>();
                 docService.InitializeTemplatesAsync().GetAwaiter().GetResult();
+
+                var auth = scope.ServiceProvider.GetRequiredService<AuthService>();
+                auth.SeedAdminAsync().GetAwaiter().GetResult();
             }
             return app;
         }
