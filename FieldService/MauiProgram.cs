@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using FieldService.Data;
 using FieldService.ViewModels;
 using FieldService.Services;
+using System.Reflection;
+using System.Linq;
 
 namespace FieldService
 {
@@ -47,10 +49,29 @@ namespace FieldService
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
                 db.Database.EnsureCreated();
 
+                CopyFontIfNeeded().GetAwaiter().GetResult();
+
                 var auth = scope.ServiceProvider.GetRequiredService<AuthService>();
                 auth.SeedAdminAsync().GetAwaiter().GetResult();
             }
             return app;
+        }
+
+        static async Task CopyFontIfNeeded()
+        {
+            string dest = Path.Combine(FileSystem.AppDataDirectory, "OpenSans-Regular.ttf");
+            if (File.Exists(dest)) return;
+
+            var assembly = typeof(MauiProgram).Assembly;
+
+            string resourceName = assembly.GetManifestResourceNames()
+                .FirstOrDefault(n => n.EndsWith("OpenSans-Regular.ttf"));
+
+            if (resourceName == null) return;
+
+            using var src = assembly.GetManifestResourceStream(resourceName);
+            using var dst = File.Create(dest);
+            await src.CopyToAsync(dst);
         }
     }
 }
