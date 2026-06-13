@@ -15,5 +15,7 @@ namespace FieldService.Models
         public string Problem { get; set; }
         public string Status { get; set; }
         public DateTime CreatedAt { get; set; }
+        public DateTime DateReceived { get; set; }
+        public string ServiceType { get; set; }
     }
 }

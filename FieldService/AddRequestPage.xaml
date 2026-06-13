@@ -21,6 +21,12 @@
             <Label Text="Описание проблемы" />
             <Editor Text="{Binding Problem}" Placeholder="Что случилось?" HeightRequest="100" />
 
+            <Label Text="Услуга" />
+            <Picker ItemsSource="{Binding AvailableServices}" SelectedItem="{Binding SelectedService}" />
+
+            <Label Text="Дата приёма" />
+            <DatePicker Date="{Binding DateReceived}" />
+
             <Button Text="Сохранить"
                     Command="{Binding SaveCommand}"
                     Margin="0,10,0,0" />

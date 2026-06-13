@@ -47,9 +47,6 @@ namespace FieldService
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
                 db.Database.EnsureCreated();
 
-                var docService = scope.ServiceProvider.GetRequiredService<IDocumentService>();
-                docService.InitializeTemplatesAsync().GetAwaiter().GetResult();
-
                 var auth = scope.ServiceProvider.GetRequiredService<AuthService>();
                 auth.SeedAdminAsync().GetAwaiter().GetResult();
             }

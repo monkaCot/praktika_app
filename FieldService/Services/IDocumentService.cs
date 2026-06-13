@@ -9,8 +9,6 @@ namespace FieldService.Services
 {
     public interface IDocumentService
     {
-        Task InitializeTemplatesAsync();
-        Task<string> FillTemplateAsync(ServiceRequest request, string templateType);
-        Task PrintDocumentAsync(string html);
+        Task PrintDocumentAsync(ServiceRequest request, string templateType);
     }
 }

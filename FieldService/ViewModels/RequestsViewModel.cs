@@ -58,8 +58,7 @@ public partial class RequestsViewModel : ObservableObject
 
         try
         {
-            var filledHtml = await _documentService.FillTemplateAsync(request, templateType);
-            await _documentService.PrintDocumentAsync(filledHtml);
+            await _documentService.PrintDocumentAsync(request, templateType);
         }
         catch (Exception ex)
         {
