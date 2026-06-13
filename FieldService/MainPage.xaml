@@ -3,45 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:FieldService.ViewModels"
              xmlns:models="clr-namespace:FieldService.Models"
+             xmlns:controls="clr-namespace:FieldService.Controls"
              x:Class="FieldService.MainPage"
              x:DataType="vm:RequestsViewModel"
+             BackgroundColor="White"
              Title="Заявки">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="AddButton" Text="+" Command="{Binding GoToAddCommand}" />
     </ContentPage.ToolbarItems>
 
-    <CollectionView ItemsSource="{Binding Requests}">
+    <Grid RowDefinitions="*, Auto">
+        <CollectionView Grid.Row="0" ItemsSource="{Binding Requests}">
 
-        <CollectionView.EmptyView>
-            <Label Text="Заявок пока нет"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center" />
-        </CollectionView.EmptyView>
+            <CollectionView.EmptyView>
+                <Label Text="Заявок пока нет"
+                       HorizontalOptions="Center" VerticalOptions="Center"
+                       TextColor="{StaticResource Gray400}" />
+            </CollectionView.EmptyView>
 
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:ServiceRequest">
-                <Border Margin="10,5" Padding="12"
-                        StrokeShape="RoundRectangle 10">
-                    <Grid ColumnDefinitions="*, Auto">
-                        <VerticalStackLayout Grid.Column="0" Spacing="4">
-                            <Label Text="{Binding ClientName}" FontSize="18" FontAttributes="Bold" />
-                            <Label Text="{Binding Address}" FontSize="14" />
-                            <Label Text="{Binding Problem}" FontSize="13" TextColor="Gray" />
-                            <Label Text="{Binding Status}" FontSize="12" />
-                        </VerticalStackLayout>
-                        <Button Grid.Column="1"
-                                Text="📄"
-                                BackgroundColor="Transparent"
-                                TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.GenerateDocumentCommand}"
-                                CommandParameter="{Binding .}"
-                                VerticalOptions="Center" />
-                    </Grid>
-                </Border>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:ServiceRequest">
+                    <Border Style="{StaticResource CardBorder}">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <VerticalStackLayout Grid.Column="0" Spacing="3">
+                                <Label Text="{Binding ClientName}" FontSize="17" FontAttributes="Bold" />
+                                <Label Text="{Binding ServiceType}" FontSize="13" TextColor="{StaticResource Primary}" />
+                                <Label Text="{Binding Address}" FontSize="13" TextColor="{StaticResource Gray500}" />
+                                <Label Text="{Binding Problem}" FontSize="13" TextColor="{StaticResource Gray500}" />
+                                <Label Text="{Binding Status}" FontSize="12" TextColor="{StaticResource Gray400}" />
+                            </VerticalStackLayout>
 
-    </CollectionView>
+                            <Button Grid.Column="1"
+                                    Text="📄" FontSize="20"
+                                    BackgroundColor="Transparent"
+                                    TextColor="{StaticResource Primary}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.GenerateDocumentCommand}"
+                                    CommandParameter="{Binding .}"
+                                    VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
 
+        </CollectionView>
+
+        <controls:BrandFooter Grid.Row="1" />
+    </Grid>
 </ContentPage>

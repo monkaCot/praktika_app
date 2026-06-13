@@ -2,36 +2,54 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:FieldService.ViewModels"
+             xmlns:controls="clr-namespace:FieldService.Controls"
              x:Class="FieldService.AddRequestPage"
              x:DataType="vm:AddRequestViewModel"
+             BackgroundColor="White"
              Title="Новая заявка">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+    <Grid RowDefinitions="*, Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="20" Spacing="4">
 
-            <Label Text="Имя клиента" />
-            <Entry Text="{Binding ClientName}" Placeholder="Иван Иванов" />
+                <Label Text="Имя клиента" Style="{StaticResource FieldCaption}" />
+                <Border Style="{StaticResource InputBorder}">
+                    <Entry Text="{Binding ClientName}" Placeholder="Иван Иванов" />
+                </Border>
 
-            <Label Text="Телефон" />
-            <Entry Text="{Binding Phone}" Placeholder="+7..." Keyboard="Telephone" />
+                <Label Text="Телефон" Style="{StaticResource FieldCaption}" />
+                <Border Style="{StaticResource InputBorder}">
+                    <Entry Text="{Binding Phone}" Placeholder="+7..." Keyboard="Telephone" />
+                </Border>
 
-            <Label Text="Адрес" />
-            <Entry Text="{Binding Address}" Placeholder="ул. Ленина, 1" />
+                <Label Text="Адрес" Style="{StaticResource FieldCaption}" />
+                <Border Style="{StaticResource InputBorder}">
+                    <Entry Text="{Binding Address}" Placeholder="ул. Ленина, 1" />
+                </Border>
 
-            <Label Text="Описание проблемы" />
-            <Editor Text="{Binding Problem}" Placeholder="Что случилось?" HeightRequest="100" />
+                <Label Text="Описание проблемы" Style="{StaticResource FieldCaption}" />
+                <Border Style="{StaticResource InputBorder}">
+                    <Editor Text="{Binding Problem}" Placeholder="Что случилось?" HeightRequest="100" />
+                </Border>
 
-            <Label Text="Услуга" />
-            <Picker ItemsSource="{Binding AvailableServices}" SelectedItem="{Binding SelectedService}" />
+                <Label Text="Услуга" Style="{StaticResource FieldCaption}" />
+                <Border Style="{StaticResource InputBorder}">
+                    <Picker ItemsSource="{Binding AvailableServices}" SelectedItem="{Binding SelectedService}" />
+                </Border>
 
-            <Label Text="Дата приёма" />
-            <DatePicker Date="{Binding DateReceived}" />
+                <Label Text="Дата приёма" Style="{StaticResource FieldCaption}" />
+                <Border Style="{StaticResource InputBorder}">
+                    <DatePicker Date="{Binding DateReceived}" />
+                </Border>
 
-            <Button Text="Сохранить"
-                    Command="{Binding SaveCommand}"
-                    Margin="0,10,0,0" />
+                <Button Text="Сохранить"
+                        Command="{Binding SaveCommand}"
+                        Style="{StaticResource PrimaryButton}"
+                        Margin="0,12,0,0" />
 
-        </VerticalStackLayout>
-    </ScrollView>
+            </VerticalStackLayout>
+        </ScrollView>
 
+        <controls:BrandFooter Grid.Row="1" />
+    </Grid>
 </ContentPage>

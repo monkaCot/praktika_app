@@ -2,25 +2,41 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:FieldService.ViewModels"
+             xmlns:controls="clr-namespace:FieldService.Controls"
              x:Class="FieldService.RegisterPage"
              x:DataType="vm:RegisterViewModel"
+             BackgroundColor="White"
              Title="Регистрация">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="30" Spacing="18" VerticalOptions="Center">
+    <Grid RowDefinitions="*, Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="28" Spacing="14" VerticalOptions="Center">
 
-            <Label Text="Регистрация клиента"
-                   FontSize="26" FontAttributes="Bold"
-                   HorizontalOptions="Center" />
+                <Label Text="Регистрация клиента"
+                       FontSize="22" FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       TextColor="{StaticResource Primary}"
+                       Margin="0,0,0,8" />
 
-            <Entry Text="{Binding FullName}" Placeholder="Ваше имя" />
-            <Entry Text="{Binding Username}" Placeholder="Логин" />
-            <Entry Text="{Binding Password}" Placeholder="Пароль" IsPassword="True" />
+                <Border Style="{StaticResource InputBorder}">
+                    <Entry Text="{Binding FullName}" Placeholder="Ваше имя" />
+                </Border>
+                <Border Style="{StaticResource InputBorder}">
+                    <Entry Text="{Binding Username}" Placeholder="Логин" />
+                </Border>
+                <Border Style="{StaticResource InputBorder}">
+                    <Entry Text="{Binding Password}" Placeholder="Пароль" IsPassword="True" />
+                </Border>
 
-            <Label Text="{Binding Message}" TextColor="Red" />
+                <Label Text="{Binding Message}" TextColor="#DC2626" HorizontalOptions="Center" />
 
-            <Button Text="Зарегистрироваться" Command="{Binding RegisterCommand}" />
+                <Button Text="Зарегистрироваться"
+                        Command="{Binding RegisterCommand}"
+                        Style="{StaticResource PrimaryButton}" />
 
-        </VerticalStackLayout>
-    </ScrollView>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <controls:BrandFooter Grid.Row="1" />
+    </Grid>
 </ContentPage>

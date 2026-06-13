@@ -2,25 +2,46 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:FieldService.ViewModels"
+             xmlns:controls="clr-namespace:FieldService.Controls"
              x:Class="FieldService.AddUserPage"
              x:DataType="vm:AddUserViewModel"
+             BackgroundColor="White"
              Title="Новый пользователь">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+    <Grid RowDefinitions="*, Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="20" Spacing="4">
 
-            <Entry Text="{Binding FullName}" Placeholder="Имя" />
-            <Entry Text="{Binding Username}" Placeholder="Логин" />
-            <Entry Text="{Binding Password}" Placeholder="Пароль" IsPassword="True" />
+                <Label Text="Имя" Style="{StaticResource FieldCaption}" />
+                <Border Style="{StaticResource InputBorder}">
+                    <Entry Text="{Binding FullName}" Placeholder="Имя" />
+                </Border>
 
-            <Label Text="Роль" />
-            <Picker ItemsSource="{Binding AvailableRoles}"
-                    SelectedItem="{Binding SelectedRole}" />
+                <Label Text="Логин" Style="{StaticResource FieldCaption}" />
+                <Border Style="{StaticResource InputBorder}">
+                    <Entry Text="{Binding Username}" Placeholder="Логин" />
+                </Border>
 
-            <Label Text="{Binding Message}" TextColor="Red" />
+                <Label Text="Пароль" Style="{StaticResource FieldCaption}" />
+                <Border Style="{StaticResource InputBorder}">
+                    <Entry Text="{Binding Password}" Placeholder="Пароль" IsPassword="True" />
+                </Border>
 
-            <Button Text="Создать" Command="{Binding SaveCommand}" />
+                <Label Text="Роль" Style="{StaticResource FieldCaption}" />
+                <Border Style="{StaticResource InputBorder}">
+                    <Picker ItemsSource="{Binding AvailableRoles}" SelectedItem="{Binding SelectedRole}" />
+                </Border>
 
-        </VerticalStackLayout>
-    </ScrollView>
+                <Label Text="{Binding Message}" TextColor="#DC2626" Margin="0,8,0,0" />
+
+                <Button Text="Создать"
+                        Command="{Binding SaveCommand}"
+                        Style="{StaticResource PrimaryButton}"
+                        Margin="0,10,0,0" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <controls:BrandFooter Grid.Row="1" />
+    </Grid>
 </ContentPage>

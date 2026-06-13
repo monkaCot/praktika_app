@@ -3,25 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:FieldService.ViewModels"
              xmlns:models="clr-namespace:FieldService.Models"
+             xmlns:controls="clr-namespace:FieldService.Controls"
              x:Class="FieldService.UsersPage"
              x:DataType="vm:UsersViewModel"
+             BackgroundColor="White"
              Title="Пользователи">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="+" Command="{Binding GoToAddUserCommand}" />
     </ContentPage.ToolbarItems>
 
-    <CollectionView ItemsSource="{Binding Users}">
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:User">
-                <Border Margin="10,5" Padding="12" StrokeShape="RoundRectangle 10">
-                    <VerticalStackLayout Spacing="3">
-                        <Label Text="{Binding FullName}" FontAttributes="Bold" FontSize="17" />
-                        <Label Text="{Binding Username, StringFormat='Логин: {0}'}" FontSize="13" />
-                        <Label Text="{Binding Role, StringFormat='Роль: {0}'}" FontSize="13" TextColor="Gray" />
-                    </VerticalStackLayout>
-                </Border>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    <Grid RowDefinitions="*, Auto">
+        <CollectionView Grid.Row="0" ItemsSource="{Binding Users}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:User">
+                    <Border Style="{StaticResource CardBorder}">
+                        <VerticalStackLayout Spacing="3">
+                            <Label Text="{Binding FullName}" FontAttributes="Bold" FontSize="17" />
+                            <Label Text="{Binding Username, StringFormat='Логин: {0}'}" FontSize="13" TextColor="{StaticResource Gray500}" />
+                            <Label Text="{Binding Role, StringFormat='Роль: {0}'}" FontSize="13" TextColor="{StaticResource Primary}" />
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <controls:BrandFooter Grid.Row="1" />
+    </Grid>
 </ContentPage>

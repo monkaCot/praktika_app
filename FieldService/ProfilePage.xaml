@@ -2,14 +2,30 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:FieldService.ViewModels"
+             xmlns:controls="clr-namespace:FieldService.Controls"
              x:Class="FieldService.ProfilePage"
              x:DataType="vm:ProfileViewModel"
+             BackgroundColor="White"
              Title="Профиль">
 
-    <VerticalStackLayout Padding="25" Spacing="14">
-        <Label Text="{Binding FullName}" FontSize="24" FontAttributes="Bold" />
-        <Label Text="{Binding Username, StringFormat='Логин: {0}'}" />
-        <Label Text="{Binding Role, StringFormat='Роль: {0}'}" />
-        <Button Text="Выйти" Command="{Binding LogoutCommand}" Margin="0,20,0,0" />
-    </VerticalStackLayout>
+    <Grid RowDefinitions="*, Auto">
+        <VerticalStackLayout Grid.Row="0" Padding="20" Spacing="16">
+
+            <Border Style="{StaticResource CardBorder}" Margin="0,8,0,0">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="{Binding FullName}" FontSize="22" FontAttributes="Bold" />
+                    <Label Text="{Binding Username, StringFormat='Логин: {0}'}" TextColor="{StaticResource Gray500}" />
+                    <Label Text="{Binding Role, StringFormat='Роль: {0}'}" TextColor="{StaticResource Gray500}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="Выйти"
+                    Command="{Binding LogoutCommand}"
+                    Style="{StaticResource PrimaryButton}"
+                    BackgroundColor="#DC2626" />
+
+        </VerticalStackLayout>
+
+        <controls:BrandFooter Grid.Row="1" />
+    </Grid>
 </ContentPage>

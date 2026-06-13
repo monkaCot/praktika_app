@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FieldService.Controls.BrandFooter">
+
+    <VerticalStackLayout Spacing="3" Padding="12,8">
+        <BoxView HeightRequest="0.5" Color="{StaticResource Gray200}" />
+
+        <HorizontalStackLayout Spacing="8" HorizontalOptions="Center" Padding="0,6,0,0">
+            <Image Source="logo.jpg" HeightRequest="22" WidthRequest="22" />
+            <Label Text="Сервис-центр «Админ»"
+                   FontSize="12" VerticalOptions="Center"
+                   TextColor="{StaticResource Gray600}" />
+        </HorizontalStackLayout>
+
+        <!-- ====================== ПОДПИСЬ РАЗРАБОТЧИКА ====================== -->
+        <Label Text="Разработчик: ____________"
+               FontSize="11" HorizontalOptions="Center"
+               TextColor="{StaticResource Gray500}" />
+        <!-- ================================================================= -->
+
+    </VerticalStackLayout>
+</ContentView>
