@@ -45,8 +45,6 @@ namespace FieldService
             using (var scope = app.Services.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                var dbPath = Path.Combine(FileSystem.AppDataDirectory, "fieldservice.db");
-                if (File.Exists(dbPath)) File.Delete(dbPath);
                 db.Database.EnsureCreated();
 
                 var docService = scope.ServiceProvider.GetRequiredService<IDocumentService>();
